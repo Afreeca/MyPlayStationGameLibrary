@@ -20,13 +20,9 @@ class Sidebar extends Component {
     return (
       <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
         <div className="logo" style={{ margin: '20px', textAlign: 'center'}}>
-        <img src="/icons/ps-icon.png" width='54px' height='54px' />
+          <img src="/icons/ps-icon.png" width='54px' height='54px' />
         </div>
-        <Menu 
-          theme="dark" 
-          mode="inline" 
-          defaultSelectedKeys={['1']}
-        >
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1'] }>
           <Menu.Item key="1">
             <Link to='/'>
               <Icon type="home" />
@@ -41,7 +37,6 @@ class Sidebar extends Component {
           </Menu.Item>
         </Menu>
       </Sider>
-   
     );
   }
 }
