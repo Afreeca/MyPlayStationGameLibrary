@@ -20,7 +20,7 @@ public class SwaggerConfig {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.sony.playstation"))
+				.apis(RequestHandlerSelectors.basePackage("com.sony.ps.gamelibraryservice"))
 				.paths(PathSelectors.any())
 				.build()
 				.apiInfo(apiInfo());
