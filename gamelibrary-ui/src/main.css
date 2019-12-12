@@ -1,4 +1,6 @@
 @import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
 
 body {
   margin: 0;
@@ -8,14 +10,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow:hidden;
 }
 
-
 .ant-layout{
-  height: 100vh;
+  height: 100vw;
 } 
 
-
+.logo{
+  margin: 20px;
+  text-align: center;
+}
 .full-bg-size-component { 
   background-repeat: no-repeat; 
   background-position: center center;
@@ -26,6 +31,7 @@ body {
   background-size: cover;
 }
 
+/* Home */
 .homeContent{
   width: 100%;
   height: 100%;
@@ -33,12 +39,23 @@ body {
   padding: 94;
   padding: 0;
   background-image: "url('img/playstation-bg.png')";
-  background-repeat : no-repeat;
+  background-repeat: no-repeat; 
+  background-position:  90px 0;
   background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
+
 .homeText{
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
   margin-top: 300px;
   color: #fff;
   text-align: center;
+}
+
+.menu-item{
+  font-family: 'Bebas Neue', cursive;
 }

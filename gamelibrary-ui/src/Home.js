@@ -1,7 +1,6 @@
 import React from 'react';
 import Typing from 'react-typing-animation';
 import { Layout } from 'antd';
-import './main.css';
 import image from 'img/playstation-bg.png'
 
 const { Content } = Layout;
