@@ -1,0 +1,2 @@
+insert into game (id, name, platform, genre, releaseDate, nrPlayers, publisher, imageUrl)
+    VALUES ('1', 'God Of War', 'PS4', 'Fighting', '2018-11-08T08:03:11.257Z', 4, 'Sony Interactive Entertainment', 'https://media.gamestop.com/i/gamestop/10131619/God-of-War');
