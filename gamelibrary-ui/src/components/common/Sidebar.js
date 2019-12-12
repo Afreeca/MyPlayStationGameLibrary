@@ -3,7 +3,6 @@ import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 
 const { Sider } = Layout;
-const { SubMenu } = Menu;
 
 class Sidebar extends Component {
   state = {
@@ -19,19 +18,19 @@ class Sidebar extends Component {
   render() {
     return (
       <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-        <div className="logo" style={{ margin: '20px', textAlign: 'center'}}>
-          <img src="/icons/ps-icon.png" width='54px' height='54px' />
+        <div className='logo' style={{ margin: '20px', textAlign: 'center'}}>
+          <img src='/icons/ps-icon.png' width='54px' height='54px' alt='logo'/>
         </div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1'] }>
-          <Menu.Item key="1">
+        <Menu theme='dark' mode='inline' defaultSelectedKeys={['1'] }>
+          <Menu.Item key='1'>
             <Link to='/'>
-              <Icon type="home" />
+              <Icon type='home' />
               <span>Home</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="2">
+          <Menu.Item key='2'>
             <Link to='/gameLibrary'>
-              <Icon type="appstore" />
+              <Icon type='appstore' />
               <span>Game Library</span>
             </Link>
           </Menu.Item>

@@ -13,9 +13,32 @@ body {
 
 .ant-layout{
   height: 100vh;
-}
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+} 
+
+
+.full-bg-size-component { 
+  background-repeat: no-repeat; 
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
+.homeContent{
+  width: 100%;
+  height: 100%;
+  margin: 24px 16px;
+  padding: 94;
+  padding: 0;
+  background-image: "url('img/playstation-bg.png')";
+  background-repeat : no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.homeText{
+  margin-top: 300px;
+  color: #fff;
+  text-align: center;
+}
