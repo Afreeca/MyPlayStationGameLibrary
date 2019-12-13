@@ -23,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Api(value = "Game resource")
+@CrossOrigin(origins = "http://localhost:3000")
 public class gameController {
 
     @Autowired
@@ -35,7 +36,7 @@ public class gameController {
         @ApiResponse(code = 403, message = "Access denied"),
         @ApiResponse(code = 500, message = "Server Error")})
     public ResponseEntity<List<Game>> getAll(){
-        return new ResponseEntity( gameService.getGames(), HttpStatus.OK);
+        return new ResponseEntity<>( gameService.getGames(), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get a game")
@@ -45,8 +46,8 @@ public class gameController {
         @ApiResponse(code = 404, message = "The game doesn't exist"),
         @ApiResponse(code = 500, message = "Server Error")})
     @GetMapping(value = "/game/{name}")
-    public ResponseEntity<List<Game>> getGame(@ApiParam("name") @PathVariable String name){
-        return new ResponseEntity( gameService.getGameByName(name), HttpStatus.OK);
+    public ResponseEntity<Game> getGame(@ApiParam("name") @PathVariable String name){
+        return new ResponseEntity<>( gameService.getGameByName(name), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Add a new game")
@@ -56,7 +57,7 @@ public class gameController {
         @ApiResponse(code = 500, message = "Server Error")})
     @PostMapping(value = "/game")
     public ResponseEntity<Game> addGame(@Valid @RequestBody Game game){
-        return new ResponseEntity(gameService.addGame(game), HttpStatus.OK);
+        return new ResponseEntity<>(gameService.addGame(game), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Delete a specific game")

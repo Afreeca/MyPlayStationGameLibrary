@@ -1,37 +1,94 @@
 import React from 'react';
-import { Table as AntTable, Avatar, Button } from 'antd';
+import { Table, Popconfirm, Avatar, Button } from 'antd';
 import { formatMomentDate } from 'utils/helper';
 
-const columns = [
-  { title: 'Name', dataIndex: 'name', key: 'name',  width: 150, fixed: 'left', },
-  { title: 'Platform', dataIndex: 'platform', key: 'platform', width: 150, },
-  { title: 'Genre', dataIndex: 'genre', key: 'genre', width: 150, },
-  { title: 'Release Date', dataIndex: 'releaseDate', key: 'releaseDate', width: 150, 
-render: (text, game) =>  <span>{formatMomentDate(game.releaseDate)}</span>
-  },
-  { title: 'No. of Players', dataIndex: 'nrPlayers', key: 'nrPlayers', width: 150, },
-  { title: 'Publisher', dataIndex: 'publisher', key: 'publisher', width: 150, },
-  { title: 'boxArt', dataIndex: 'boxArtUrl', key: 'boxArtUrl', width: 250, 
-    render: (text, game) =>  <Avatar src= {game.boxArtUrl} shape="square" size={64}/>
-  },
-  {
-    title: 'Action',
-    dataIndex: '',
-    key: 'x',
-    fixed: 'right',
-    render: (ext, game) => <Button onClick={() => console.log('merda')}>remove</Button>,
-  }
-];
+class EditableTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.columns = [
+      {
+        title: 'Name',
+        dataIndex: 'name',
+        width: '12.5%',
+        fixed: 'left',
+      },
+      {
+        title: 'Platform',
+        dataIndex: 'platform',
+        width: '12.5%',
+      },
+      {
+        title: 'Genre',
+        dataIndex: 'genre',
+        width: '12.5%',
+      },
+      {
+        title: 'Release Date',
+        dataIndex: 'releaseDate',
+        width: '12.5%', 
+        render: (text, game) => <span>{formatMomentDate(game.releaseDate)}</span>
+      },
+      {
+        title: 'No. of Players',
+        dataIndex: 'nrPlayers',
+        width: '12.5%',
+      },
+      {
+        title: 'Publisher',
+        dataIndex: 'publisher',
+        width: '12.5%',
+      },
+      { 
+        title: 'Box Art', 
+        dataIndex: 'boxArtUrl', 
+        width: '12.5%',
+        render: (text, game) => <Avatar src= {game.boxArtUrl} shape="square" size={64}/>
+      },
 
-const Table = ({games, addGame, removeData}) => {    
+      {
+        title: 'operation',
+        dataIndex: 'operation',
+        fixed: 'right',
+        width: '12.5%',
+        render: (text, record) =>
+          this.state.dataSource.length >= 1 ? (
+            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+              <Button>Delete</Button>
+            </Popconfirm>
+          ) : null,
+      },
+    ];
+
+    this.state = {
+      dataSource: [],
+      count: 2,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      dataSource: this.props.data,
+      count: this.props.data.length
+    })
+  }
+
+  handleDelete = key => {
+    const dataSource = [...this.state.dataSource];
+    this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+  };
+
+  render() {
     return (
-        <AntTable
-            title={() => <span className='tableHeader'>Current Games</span>}
-            columns={columns}
-            dataSource={games}
-            scroll={{ y: 240, x: 1000 }}
+      <div>
+        <Table
+          title={() => <span className='tableHeader'>Current Games</span>}
+          dataSource={this.state.dataSource}
+          columns={this.columns}
+          scroll={{ y: 240, x: 1200 }}
         />
+      </div>
     );
+  }
 }
 
-export default Table;
+export default EditableTable;

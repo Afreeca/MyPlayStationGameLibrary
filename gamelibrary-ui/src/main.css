@@ -1,15 +1,13 @@
 @import '~antd/dist/antd.css';
 @import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
 
 /* Generic begin */
 body {
   margin: 0;
   background-color: #f0f2f5;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow:hidden;
@@ -74,5 +72,5 @@ body {
 .tableHeader {
   justify-content: center;
   display: flex;
-  background-color:#f0f2f5;
+  background-color:rgba(240, 242, 245,0.5);
 }
