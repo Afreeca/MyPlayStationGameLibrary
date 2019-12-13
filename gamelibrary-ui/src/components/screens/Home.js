@@ -3,10 +3,10 @@ import Typing from 'react-typing-animation';
 import { Button } from 'antd';
 import image from 'img/playstation-bg.png'
 
+
 const Home = () => {
-
   const [Btn, setBtnVisible] = useState(false);
-
+  
   return (
       <div className='homeContent'  style={{ backgroundImage: `url(${image})`}}>
         <div className='homeTextWrapper'>

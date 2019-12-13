@@ -68,3 +68,11 @@ body {
   display: flex;
   background-color: 'transparent';
 }
+
+/* Game Library */
+
+.tableHeader {
+  justify-content: center;
+  display: flex;
+  background-color:#f0f2f5;
+}

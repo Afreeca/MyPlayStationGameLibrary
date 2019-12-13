@@ -1,18 +1,6 @@
 import { UPDATE_GAME_FORM, CLEAR_GAME_FORM } from '../actions/types';
   
-  const INITIAL_STATE = {
-      firstName: '',
-      lastName: '',
-      genre:'',
-      dob: '',
-      phone: '',
-      location: '',
-      username: '',
-      email: '',
-      password: '',
-      rePassword:'',
-      error: '',
-  };
+  const INITIAL_STATE = {};
   
   export default (state = {}, action) => {  
     switch (action.type) {
