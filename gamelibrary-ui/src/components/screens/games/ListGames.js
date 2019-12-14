@@ -1,5 +1,5 @@
 import React from 'react';
-import EditableTable from 'components/common/Table';
+import Table from 'components/common/Table';
 import { Layout, Spin} from 'antd';
 import { GetGames } from 'utils/api';
 import { addKeyToObjectArray } from 'utils/helper';
@@ -11,8 +11,8 @@ const ListGames =() => {
   
   return (
     <Layout>
-      <Content style={{margin: '24px 16px', padding: 24,backgroundColor:  '#e0e4eb' }}>
-         {response ? <EditableTable data={addKeyToObjectArray(response.data)}/> : <div className="spinner"><Spin /></div>}
+      <Content style={{margin: '16px 16px', padding: 24,backgroundColor:  '#e0e4eb' }}>
+         {response ? <Table data={addKeyToObjectArray(response.data)}/> : <div className="spinner"><Spin /></div>}
       </Content>
     </Layout>
   );

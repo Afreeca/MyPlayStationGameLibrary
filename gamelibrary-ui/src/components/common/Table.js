@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Popconfirm, Avatar, Button } from 'antd';
+import { Table as AntTable, Popconfirm, Avatar, Button } from 'antd';
 import { formatMomentDate } from 'utils/helper';
 import { DeleteGame } from 'utils/api';
 
 
-const  EditableTable = ({data}) => {
+const Table = ({data}) => {
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const  EditableTable = ({data}) => {
 
     return (
       <div>
-        <Table
+        <AntTable
           title={() => <span className='tableHeader'>Current Games</span>}
           dataSource={dataSource}
           columns={columns}
@@ -86,4 +86,4 @@ const  EditableTable = ({data}) => {
     );
 }
 
-export default EditableTable;
+export default Table;
