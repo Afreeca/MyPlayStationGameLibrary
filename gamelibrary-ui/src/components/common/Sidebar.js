@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import 'main.css';
+
 const { Sider } = Layout;
+const { SubMenu } = Menu;
 
 class Sidebar extends Component {
   state = {
@@ -34,6 +36,28 @@ class Sidebar extends Component {
               <span className='menu-item'>Game Library</span>
             </Link>
           </Menu.Item>
+          <SubMenu
+            key="sub1"
+            title={
+              <span className='menu-item'>
+                 <Icon type='appstore' />
+                 Game Library
+              </span>
+              }
+            >
+            <Menu.Item key="3">
+              <Link to='/gameLibrary'>
+                <Icon type='database' />
+                <span className='menu-item'>List Games</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="4">
+              <Link to='/gameLibrary'>
+                <Icon type='plus-square' />
+                <span className='menu-item'>Add Game</span>
+              </Link>
+            </Menu.Item>
+          </SubMenu>
         </Menu>
       </Sider>
     );

@@ -74,3 +74,10 @@ body {
   display: flex;
   background-color:rgba(240, 242, 245,0.5);
 }
+
+.spinner {
+  justify-content: center;
+  display: flex;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}

@@ -18,8 +18,6 @@ export const GetGames = () => {
   return response;
 };
 
-
-
 export const GetGame = (name) => {
   const [response, setResponse] = useState(null);
   
@@ -40,20 +38,9 @@ export const DeleteGame = async (name) => {
     .catch(error => console.log('error: ', error))
 }
 
+export const PostData = async (data) => {
+  await axios.post(`${SERVICE_URL}/api/game`, data)
+  .then((res) => res)
+  .catch(error => console.log('error: ', error))
+}
 
-export const PostData = (data) => {
-  const [response, setResponse] = useState(null);
-  
-  console.log('data: ', data);
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      await axios.post(`${SERVICE_URL}/api/game`, data)
-        .then((res) => setResponse(res))
-        .catch(error => console.log('error: ', error))
-    };
-    fetchData();
-  }, [data]);
-  return response;
-  
-};
