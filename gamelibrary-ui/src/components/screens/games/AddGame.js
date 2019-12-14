@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { uploadFile } from 'helper/fireStorage';
+import { UploadFile } from 'helper/fireStorage';
 import { Layout, Form, DatePicker, Button, Input, Alert } from 'antd';
 import Upload from 'components/common/Upload';
 import { PostGame } from 'helper/api';
@@ -18,29 +18,23 @@ class AddGame extends Component {
   }
 
   handleAddGame = (gameDetails, gameImage) => {
-    console.log('Received values of form: ', gameDetails);
-    console.log('uploaded: ', gameImage, ' :: ', gameImage);
-    const game = {
-      boxArtUrl: 'gameDetails',
-      genre: gameDetails.genre,
-      name: gameDetails.name,
-      nrPlayers: 0,
-      platform: gameDetails.platform,
-      publisher: gameDetails.publisher,
-      releaseDate: gameDetails.releaseDate.format()
-    }
+ 
+    UploadFile(gameImage.file, gameImage.image.name, gameDetails.name)
+    .then((url) => {
+      const game = {
+        boxArtUrl: url,
+        genre: gameDetails.genre,
+        name: gameDetails.name,
+        nrPlayers: gameDetails.nrPlayers,
+        platform: gameDetails.platform,
+        publisher: gameDetails.publisher,
+        releaseDate: gameDetails.releaseDate.format()
+      }
+      PostGame(game).then(() => 
+      this.props.history.push('/gameLibrary')
+      )
 
-    AddGame(game);
-    
-    // uploadFile(gameImage.file, gameImage.image.name, gameDetails.name)
-    // .then((url) => {
-    //   AddGame({
-        
-    //   })
-    // })
-
-    
-
+    })
   }
 
   handleSubmit = e => {

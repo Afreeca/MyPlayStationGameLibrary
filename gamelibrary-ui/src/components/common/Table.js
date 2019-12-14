@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Table as AntTable, Popconfirm, Avatar, Button } from 'antd';
 import { formatMomentDate } from 'helper/utils';
 import { DeleteGame } from 'helper/api';
+import { UploadFile, DeleteFile } from 'helper/fireStorage';
 
 
 const Table = ({data}) => {
@@ -14,8 +15,11 @@ const Table = ({data}) => {
   const handleDelete = (record) => {
     const dataCopy = [...dataSource];
     setDataSource(dataCopy.filter(item => item.key !== record.key));
-
-    DeleteGame(record.name)
+    console.log("delete: ", record);
+    
+    DeleteGame(record.name).then(() => {
+      DeleteFile(record.name)
+    })
   };
 
   const columns = [

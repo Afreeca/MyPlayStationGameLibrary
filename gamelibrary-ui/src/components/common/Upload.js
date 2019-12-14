@@ -15,7 +15,7 @@ const Upload = ({setImage}) =>{
             withIcon={true}
             buttonText='Upload game image'
             onChange={OnChange}
-            imgExtension={['.jpg', '.png']}
+            imgExtension={['.jpg', '.png', 'jpeg']}
             fileTypeError='is not supported file extension'
             fileSizeError='file size is too big'
             maxFileSize={5242880}

@@ -1,7 +1,6 @@
 import firebase from 'firebase';
-import { getFileExtension } from 'helper/utils'
 
-export const uploadFile = async (image, imageName, gameName) => {    
+export const UploadFile = async (image, imageName, gameName) => {    
 
     console.log('imageName: ', imageName);
     console.log('gameName: ', gameName);
@@ -9,7 +8,7 @@ export const uploadFile = async (image, imageName, gameName) => {
     const response = await fetch(image);
     const file = await response.blob();
 
-    const extension = getFileExtension(imageName);
+    const extension = 'jpg';
     const folder = 'image'
     const path = `${folder}/${gameName}.${extension}`;
 
@@ -31,4 +30,22 @@ export const uploadFile = async (image, imageName, gameName) => {
             res(url);
         })
     });
+}
+
+export const DeleteFile = async (imageName) => {    
+    const folder = 'image'
+    const path = `${folder}/${imageName}.jpg`;
+
+    const storageRef  = firebase.storage().ref();
+
+    const gameRef = storageRef.child(path);
+
+    gameRef.delete().then(function() {
+        console.log("image: ", imageName, ' delete');
+        
+  }).catch(function(error) {
+    console.log("failed to delete: ", imageName);
+  });
+
+  
 }
