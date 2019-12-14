@@ -1,14 +1,15 @@
 import React from 'react';
 import EditableTable from 'components/common/Table';
 import { Layout } from 'antd';
-import { FechData } from 'utils/api';
+import { GetGames } from 'utils/api';
 import { addKeyToObjectArray } from 'utils/helper';
 
-const { Content } = Layout;
-const SERVICE_URL = process.env.REACT_APP_API_URL;
 
-const ListGames =() => {
-  const response = FechData(`${SERVICE_URL}/api/games`);
+const { Content } = Layout;
+
+
+const ListGames = () => {
+  const response = GetGames();
   
   return (
     <Layout>
