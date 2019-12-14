@@ -8,9 +8,11 @@ export const addKeyToObjectArray = (array) => {
   
 export const formatMomentDate = (date) => {
   const dt = moment(date);
-  return `${formatDig(dt.day())}-${formatDig(dt.month())}-${dt.year()}`
+  return `${formatDigit(dt.day())}-${formatDigit(dt.month())}-${dt.year()}`
 }
 
-const formatDig = (digit) => {
+const formatDigit = (digit) => {
   return digit.toString().padStart(2, "0");
 }
+
+export const getFileExtension = (file) => file.split('.').pop();

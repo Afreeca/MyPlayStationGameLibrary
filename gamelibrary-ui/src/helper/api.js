@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const SERVICE_URL = process.env.REACT_APP_API_URL;
+const SERVICE_URL = process.env.REACT_APP_SERVICE_URL;
 
 export const GetGames = () => {
   const [response, setResponse] = useState(null);
@@ -38,7 +38,7 @@ export const DeleteGame = async (name) => {
     .catch(error => console.log('error: ', error))
 }
 
-export const PostData = async (data) => {
+export const PostGame = async (data) => {
   await axios.post(`${SERVICE_URL}/api/game`, data)
   .then((res) => res)
   .catch(error => console.log('error: ', error))

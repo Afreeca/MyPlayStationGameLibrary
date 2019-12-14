@@ -1,51 +1,75 @@
 import React, { Component } from 'react';
-import { Layout, Form, DatePicker, Button, Input, Upload, Icon } from 'antd';
+import { uploadFile } from 'helper/fireStorage';
+import { Layout, Form, DatePicker, Button, Input, Alert } from 'antd';
+import Upload from 'components/common/Upload';
+import { PostGame } from 'helper/api';
 
 const { Content } = Layout;
 
 class AddGame extends Component {
+  state={ image: [], file:'', alert: false }
+
+  setImage = (image, file) => {
+    this.setState({image: image[0], file: file[0]})
+  }
+
+  onCloseAlert = () => {
+    this.setState({alert:false})
+  }
+
+  handleAddGame = (gameDetails, gameImage) => {
+    console.log('Received values of form: ', gameDetails);
+    console.log('uploaded: ', gameImage, ' :: ', gameImage);
+    const game = {
+      boxArtUrl: 'gameDetails',
+      genre: gameDetails.genre,
+      name: gameDetails.name,
+      nrPlayers: 0,
+      platform: gameDetails.platform,
+      publisher: gameDetails.publisher,
+      releaseDate: gameDetails.releaseDate.format()
+    }
+
+    AddGame(game);
+    
+    // uploadFile(gameImage.file, gameImage.image.name, gameDetails.name)
+    // .then((url) => {
+    //   AddGame({
+        
+    //   })
+    // })
+
+    
+
+  }
+
   handleSubmit = e => {
     e.preventDefault();
 
+    const {file, image } = this.state;
+
     this.props.form.validateFields((err, values) => {
-      if (err) {
+      if (err) return;      
+      if (!file || !image) {
+         this.setState({alert: true});
         return;
       }
 
-      console.log('Received values of form: ', values);
+      this.handleAddGame(values, {image, file}) ;
     });
-  };
-
-  normFile = e => {
-    console.log('Upload event:', e);
-    if (Array.isArray(e)) {
-      return e;
-    }
-    return e && e.fileList;
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
-      },
+      labelCol: {  xs: { span: 24 }, sm: { span: 8 } },
+      wrapperCol: { xs: { span: 24 }, sm: { span: 16 } },
     };
-    const config = {
+    const dateConfig = {
       rules: [{ type: 'object', required: true, message: 'Select release date!' }],
-    };
-
-    const upload = (e) => {
-      console.log('vida: ', e);
     };
   
     return (
-      <Layout>
       <Content style={{margin: '16px 16px', padding: 20,backgroundColor:  '#e0e4eb', display: 'inline-flex', justifyContent: 'center' }}>
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <Form.Item label="Name">
@@ -67,7 +91,7 @@ class AddGame extends Component {
         </Form.Item>
 
         <Form.Item label="Release Date">
-          {getFieldDecorator('releaseDate', config)(<DatePicker />)}
+          {getFieldDecorator('releaseDate', dateConfig)(<DatePicker />)}
         </Form.Item>
 
         <Form.Item label="Nr of players">
@@ -82,19 +106,15 @@ class AddGame extends Component {
           })(<Input />)}
         </Form.Item>
 
-        <Form.Item label="Game Image"> 
-          {getFieldDecorator('upload', {
-            valuePropName: 'fileList',
-            getValueFromEvent: this.normFile,
-          })(
-            <Upload name="logo" customRequest={upload} listType="picture">
-              <Button>
-                <Icon type="upload" />upload
-              </Button>
-            </Upload>,
-          )}
-        </Form.Item>
-        
+        <Upload setImage={this.setImage}/>
+        { this.state.alert && <Alert
+          message="game Image Missing"
+          description="Please upload image to proceed"
+          type="error"
+          closable
+          showIcon
+          onClose={this.onCloseAlert}
+        />}
         <Form.Item
           wrapperCol={{
             xs: { span: 1, offset: 0 },
@@ -107,7 +127,7 @@ class AddGame extends Component {
         </Form.Item>
       </Form>
       </Content>
-      </Layout>
+
     );
   }
 }

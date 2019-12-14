@@ -1,8 +1,8 @@
 import React from 'react';
 import Table from 'components/common/Table';
 import { Layout, Spin} from 'antd';
-import { GetGames } from 'utils/api';
-import { addKeyToObjectArray } from 'utils/helper';
+import { GetGames } from 'helper/api';
+import { addKeyToObjectArray } from 'helper/utils';
 
 const { Content } = Layout;
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table as AntTable, Popconfirm, Avatar, Button } from 'antd';
-import { formatMomentDate } from 'utils/helper';
-import { DeleteGame } from 'utils/api';
+import { formatMomentDate } from 'helper/utils';
+import { DeleteGame } from 'helper/api';
 
 
 const Table = ({data}) => {
