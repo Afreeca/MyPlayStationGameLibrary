@@ -46,7 +46,7 @@ public class gameController {
         @ApiResponse(code = 404, message = "The game doesn't exist"),
         @ApiResponse(code = 500, message = "Server Error")})
     @GetMapping(value = "/game/{name}")
-    public ResponseEntity<Game> getGame(@ApiParam("name") @PathVariable String name){
+    public ResponseEntity<Game> getGame(@ApiParam("name") @PathVariable("name") String name){
         return new ResponseEntity<>( gameService.getGameByName(name), HttpStatus.OK);
     }
 
@@ -66,8 +66,8 @@ public class gameController {
         @ApiResponse(code = 403, message = "Access denied"),
         @ApiResponse(code = 404, message = "The game doesn't exist"),
         @ApiResponse(code = 500, message = "Server Error")})
-    @DeleteMapping(value = "/game")
-    public ResponseEntity<List<Game>> deleteGame(@ApiParam("name") @PathVariable String name){
+    @DeleteMapping(value = "/game/{name}")
+    public ResponseEntity<List<Game>> deleteGame(@ApiParam("name") @PathVariable("name") String name){
         if(!gameService.gameExists(name))
             throw new NotFoundException(String.format("game with name=%s not found", name));
         gameService.deleteGame(name);

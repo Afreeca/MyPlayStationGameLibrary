@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Id;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.time.ZonedDateTime;
 
 @Entity
@@ -16,45 +15,38 @@ public class Game {
     @Id
     private String id;
 
-    @NotBlank
     @Column(name = "name")
     @ApiModelProperty(required = true, value = "game title")
     private String name;
 
-    @NotBlank
     @Column(name = "platform")
     @ApiModelProperty(required = true, value = "platform supported")
     String platform;
 
-    @NotBlank
     @Column(name = "genre")
     @ApiModelProperty(required = true, value = "game genre")
     String genre;
 
-    @NotBlank
     @Column(name = "releaseDate")
     @ApiModelProperty(required = true, value = "game release date")
     ZonedDateTime releaseDate;
 
-    @NotBlank
     @Column(name = "nrPlayers")
     @ApiModelProperty(required = true, value = "number of players supported")
     int nrPlayers;
 
-    @NotBlank
     @Column(name = "publisher")
     @ApiModelProperty(required = true, value = "game publisher")
     String publisher;
 
-    @NotBlank
     @Column(name = "imageUrl")
     @ApiModelProperty(required = true, value = "image of the game")
     String boxArtUrl;
 
     public Game(){}
 
-    public Game(@NotBlank String name, @NotBlank String platform, @NotBlank String genre, @NotBlank ZonedDateTime releaseDate,
-                @NotBlank int nrPlayers, @NotBlank String publisher, @NotBlank String boxArtUrl) {
+    public Game(String name, String platform, String genre, ZonedDateTime releaseDate,
+                int nrPlayers, String publisher, String boxArtUrl) {
         this.name = name;
         this.platform = platform;
         this.genre = genre;
