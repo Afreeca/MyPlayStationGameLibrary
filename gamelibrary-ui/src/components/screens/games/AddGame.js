@@ -40,14 +40,6 @@ class AddGame extends Component {
       rules: [{ type: 'object', required: true, message: 'Select release date!' }],
     };
 
-    const normFile = e => {
-      console.log('Upload event:', e);
-      if (Array.isArray(e)) {
-        return e;
-      }
-      return e && e.fileList;
-    };
-
     const upload = (e) => {
       console.log('vida: ', e);
     };
