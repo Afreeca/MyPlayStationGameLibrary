@@ -3,10 +3,13 @@ import { Table as AntTable, Popconfirm, Avatar, Button } from 'antd';
 import { formatMomentDate } from 'helper/utils';
 import { DeleteGame } from 'helper/api';
 import { DeleteFile } from 'helper/fireStorage';
+import GameItem from 'components/screens/games/GameItem';
 import Modal from 'components/common/Modal';
 
 const Table = ({data}) => {
   const [dataSource, setDataSource] = useState([]);
+  const [selectedGame, setSelectedGame] = useState('');
+  const [visible, setVisibility] = useState(false);
 
   useEffect(() => {
     setDataSource(data);
@@ -22,7 +25,8 @@ const Table = ({data}) => {
   };
 
   const handleViewGame = (game) => {
-
+    setSelectedGame(game);
+    setVisibility(true);
   }
 
   const columns = [
@@ -74,9 +78,9 @@ const Table = ({data}) => {
         <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record)}>
           <Button>Delete</Button>
         </Popconfirm>
-        <Popconfirm title="Sure to delete?" onConfirm={() => handleViewGame(record)}>
-          <Button>view</Button>
-        </Popconfirm>
+        <Button onClick={() => handleViewGame(record)}>
+          view
+        </Button>
       </div>
     },
   ];
@@ -89,7 +93,9 @@ const Table = ({data}) => {
         columns={columns}
         scroll={{ y: 240, x: 1200 }}
       />
-      <Modal  title='test1' visible={true}><span>PUTA</span></Modal>
+      <Modal  title={selectedGame.name} visible={visible} handleOk={setVisibility}>
+        <GameItem game={selectedGame}/>
+      </Modal>
     </div>
   );
 }
