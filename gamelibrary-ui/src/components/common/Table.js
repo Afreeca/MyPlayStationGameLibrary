@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Table as AntTable, Popconfirm, Avatar, Button } from 'antd';
 import { formatMomentDate } from 'helper/utils';
 import { DeleteGame } from 'helper/api';
-import { UploadFile, DeleteFile } from 'helper/fireStorage';
-
+import { DeleteFile } from 'helper/fireStorage';
+import Modal from 'components/common/Modal';
 
 const Table = ({data}) => {
   const [dataSource, setDataSource] = useState([]);
@@ -15,12 +15,15 @@ const Table = ({data}) => {
   const handleDelete = (record) => {
     const dataCopy = [...dataSource];
     setDataSource(dataCopy.filter(item => item.key !== record.key));
-    console.log("delete: ", record);
-    
+      
     DeleteGame(record.name).then(() => {
       DeleteFile(record.name)
     })
   };
+
+  const handleViewGame = (game) => {
+
+  }
 
   const columns = [
     {
@@ -61,33 +64,34 @@ const Table = ({data}) => {
       width: '12.5%',
       render: (text, game) => <Avatar src= {game.boxArtUrl} shape="square" size={64}/>
     },
-  
     {
       title: 'operation',
       dataIndex: 'operation',
       fixed: 'right',
       width: '12.5%',
       render: (text, record) =>
-        dataSource.length >= 1 ? (
-          <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record)}>
-            <Button>Delete</Button>
-          </Popconfirm>
-        ) : null,
+      <div>
+        <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record)}>
+          <Button>Delete</Button>
+        </Popconfirm>
+        <Popconfirm title="Sure to delete?" onConfirm={() => handleViewGame(record)}>
+          <Button>view</Button>
+        </Popconfirm>
+      </div>
     },
   ];
   
- 
-
-    return (
-      <div>
-        <AntTable
-          title={() => <span className='tableHeader'>Current Games</span>}
-          dataSource={dataSource}
-          columns={columns}
-          scroll={{ y: 240, x: 1200 }}
-        />
-      </div>
-    );
+  return (
+    <div>
+      <AntTable
+        title={() => <span className='tableHeader'>Current Games</span>}
+        dataSource={dataSource}
+        columns={columns}
+        scroll={{ y: 240, x: 1200 }}
+      />
+      <Modal  title='test1' visible={true}><span>PUTA</span></Modal>
+    </div>
+  );
 }
 
 export default Table;

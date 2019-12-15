@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -33,14 +32,14 @@ export const GetGame = (name) => {
 };
 
 export const DeleteGame = async (name) => {
-    await axios.delete(`${SERVICE_URL}/api/game/${name}`)
+  await axios.delete(`${SERVICE_URL}/api/game/${name}`)
     .then((res) => console.log(res))
     .catch(error => console.log('error: ', error))
 }
 
 export const PostGame = async (data) => {
   await axios.post(`${SERVICE_URL}/api/game`, data)
-  .then((res) => res)
-  .catch(error => console.log('error: ', error))
+    .then((res) => res)
+    .catch(error => console.log('error: ', error))
 }
 

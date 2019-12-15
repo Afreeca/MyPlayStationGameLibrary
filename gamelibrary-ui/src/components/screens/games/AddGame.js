@@ -3,6 +3,7 @@ import { UploadFile } from 'helper/fireStorage';
 import { Layout, Form, DatePicker, Button, Input, Alert } from 'antd';
 import Upload from 'components/common/Upload';
 import { PostGame } from 'helper/api';
+import { MESSAGES } from 'helper/message';
 
 const { Content } = Layout;
 
@@ -30,10 +31,9 @@ class AddGame extends Component {
         publisher: gameDetails.publisher,
         releaseDate: gameDetails.releaseDate.format()
       }
-      PostGame(game).then(() => 
-      this.props.history.push('/gameLibrary')
-      )
-
+      PostGame(game).then(() => {
+        this.props.history.push('/gameLibrary')
+      })
     })
   }
 
@@ -43,11 +43,12 @@ class AddGame extends Component {
     const {file, image } = this.state;
 
     this.props.form.validateFields((err, values) => {
-      if (err) return;      
+      if (err) 
+        return;      
       if (!file || !image) {
-         this.setState({alert: true});
-        return;
-      }
+        this.setState({alert: true});
+      return;
+    }
 
       this.handleAddGame(values, {image, file}) ;
     });
@@ -55,73 +56,74 @@ class AddGame extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+
     const formItemLayout = {
       labelCol: {  xs: { span: 24 }, sm: { span: 8 } },
       wrapperCol: { xs: { span: 24 }, sm: { span: 16 } },
     };
+
     const dateConfig = {
-      rules: [{ type: 'object', required: true, message: 'Select release date!' }],
+      rules: [{ type: 'object', required: true, message: MESSAGES.ENTER_DATE }],
     };
   
     return (
       <Content style={{margin: '16px 16px', padding: 20,backgroundColor:  '#e0e4eb', display: 'inline-flex', justifyContent: 'center' }}>
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-        <Form.Item label="Name">
-          {getFieldDecorator('name', {
-            rules: [{ required: true, message: 'Enter game name'} ],
-          })(<Input />)}
-        </Form.Item>
+        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+          <Form.Item label="Name">
+            {getFieldDecorator('name', {
+              rules: [{ required: true, message: MESSAGES.ENTER_NAME} ],
+            })(<Input />)}
+          </Form.Item>
 
-        <Form.Item label="Platform">
-          {getFieldDecorator('platform', {
-            rules: [{ required: true, message: 'Enter game platform'} ],
-          })(<Input />)}
-        </Form.Item>
+          <Form.Item label="Platform">
+            {getFieldDecorator('platform', {
+              rules: [{ required: true, message: MESSAGES.ENTER_PLATFORM} ],
+            })(<Input />)}
+          </Form.Item>
 
-        <Form.Item label="Genre">
-          {getFieldDecorator('genre', {
-            rules: [{ required: true, message: 'Enter game genre'} ],
-          })(<Input />)}
-        </Form.Item>
+          <Form.Item label="Genre">
+            {getFieldDecorator('genre', {
+              rules: [{ required: true, message: MESSAGES.ENTER_GENRE} ],
+            })(<Input />)}
+          </Form.Item>
 
-        <Form.Item label="Release Date">
-          {getFieldDecorator('releaseDate', dateConfig)(<DatePicker />)}
-        </Form.Item>
+          <Form.Item label="Release Date">
+            {getFieldDecorator('releaseDate', dateConfig)(<DatePicker />)}
+          </Form.Item>
 
-        <Form.Item label="Nr of players">
-          {getFieldDecorator('nrplayers', {
-            rules: [{ required: true, message: 'Enter number of players'} ],
-          })(<Input />)}
-        </Form.Item>
+          <Form.Item label="Nr of players">
+            {getFieldDecorator('nrPlayers', {
+              rules: [{ required: true, message: MESSAGES.ENTER_NR_PLAYERS} ],
+            })(<Input />)}
+          </Form.Item>
 
-        <Form.Item label="Publisher">
-          {getFieldDecorator('publisher', {
-            rules: [{ required: true, message: 'Enter game publisher'} ],
-          })(<Input />)}
-        </Form.Item>
+          <Form.Item label="Publisher">
+            {getFieldDecorator('publisher', {
+              rules: [{ required: true, message: MESSAGES.ENTER_PUBLISHER} ],
+            })(<Input />)}
+          </Form.Item>
 
-        <Upload setImage={this.setImage}/>
-        { this.state.alert && <Alert
-          message="game Image Missing"
-          description="Please upload image to proceed"
-          type="error"
-          closable
-          showIcon
-          onClose={this.onCloseAlert}
-        />}
-        <Form.Item
-          wrapperCol={{
-            xs: { span: 1, offset: 0 },
-            sm: { span: 1, offset: 13 },
-          }}
-        >
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
+          <Upload setImage={this.setImage}/>
+          { this.state.alert && <Alert
+            message={MESSAGES.IMAGE_MISSING}
+            description={MESSAGES.UPLOAD_IMAGE_ERROR}
+            type="error"
+            closable
+            showIcon
+            onClose={this.onCloseAlert}
+          />}
+          <Form.Item
+            wrapperCol={{
+              xs: { span: 1, offset: 0 },
+              sm: { span: 1, offset: 13 },
+            }}
+          >
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
       </Content>
-
     );
   }
 }

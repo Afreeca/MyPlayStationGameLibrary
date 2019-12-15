@@ -11,8 +11,6 @@ export const formatMomentDate = (date) => {
   return `${formatDigit(dt.day())}-${formatDigit(dt.month())}-${dt.year()}`
 }
 
-const formatDigit = (digit) => {
-  return digit.toString().padStart(2, "0");
-}
+const formatDigit = (digit) =>  digit.toString().padStart(2, "0");
 
 export const getFileExtension = (file) => file.split('.').pop();

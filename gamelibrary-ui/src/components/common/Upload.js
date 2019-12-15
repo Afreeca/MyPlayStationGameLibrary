@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import ImageUploader from 'react-images-upload';
- 
+import ImageUpload from 'react-images-upload';
+import { MESSAGES } from 'helper/message';
+
 const Upload = ({setImage}) =>{
     const [image, setImageUpload] = useState(null);
 
@@ -9,20 +10,18 @@ const Upload = ({setImage}) =>{
         setImage(a, b);    
     }
     return (
-
-        <ImageUploader
+        <ImageUpload
             withPreview={true}
             withIcon={true}
-            buttonText='Upload game image'
+            buttonText={MESSAGES.UPLOAD_IMAGE}
             onChange={OnChange}
             imgExtension={['.jpg', '.png', 'jpeg']}
-            fileTypeError='is not supported file extension'
-            fileSizeError='file size is too big'
+            fileTypeError={MESSAGES.FILE_EXTENSION_ERROR}
+            fileSizeError={MESSAGES.FILE_SIZE_ERROR}
             maxFileSize={5242880}
             singleImage={true}
             fileContainerStyle={{width:'300px', height:'300px'}}
         />
-
     );
 }
 

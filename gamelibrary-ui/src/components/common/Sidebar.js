@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 
-const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 class Sidebar extends Component {
   render() {
     return (
-      <Sider trigger={null}>
+      <Layout.Sider trigger={null}>
         <div className='logo'>
           <img src='/icons/ps-icon.png' width='54px' height='54px' alt='logo'/>
         </div>
@@ -42,7 +41,7 @@ class Sidebar extends Component {
             </Menu.Item>
           </SubMenu>
         </Menu>
-      </Sider>
+      </Layout.Sider>
     );
   }
 }
