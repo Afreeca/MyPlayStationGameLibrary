@@ -1,0 +1,37 @@
+version: "3.7"
+
+# Define services
+services:
+     # Backend service
+    backend-api:
+        # Configuration for building the docker image
+        build:
+            context: ./gamelibrary-service
+            dockerfile: Dockerfile
+        ports:
+            - "9000:9000" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+        restart: always
+        networks: # Networks to join (Services on the same network can communicate with each other using their name)
+            - backend
+            - frontend
+    # Backend service
+    frontend-ui:
+        build:
+            context: ./gamelibrary-ui
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        restart: always
+        depends_on:
+            - backend-api
+        networks:
+            - frontend  
+# Volumes
+volumes:
+    db-data:
+
+
+# Networks to be created to facilitate communication between containers
+networks:
+    backend:
+    frontend:    

@@ -7,7 +7,7 @@ import { addKeyToObjectArray } from 'helper/utils';
 const { Content } = Layout;
 
 const ListGames =() => {
-  const response = GetGames('/api/games');
+  const response = GetGames();
   
   return (
     <Layout>
