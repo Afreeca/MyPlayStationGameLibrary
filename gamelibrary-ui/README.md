@@ -2,7 +2,7 @@
 
 User Interface for PlayStation game library 
 
-## Running the application from the command line using Maven
+## Running the application from the command line using NPM
 
 In the base directory (containing package.json)
 1. Install dependencies:
