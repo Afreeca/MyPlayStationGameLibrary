@@ -1,16 +1,3 @@
-
-In the project root directory:
-Install dependencies:
- ### npm install
-
-Run the application
-### `npm start`
-
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-
-docker run -it -p 8080:80 react-docker-app
-
 # Game Library UI
 
 User Interface for PlayStation game library 
