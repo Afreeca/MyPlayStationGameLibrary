@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping("/api")
 @Api(value = "Game resource")
 @CrossOrigin(origins = "http://localhost:3000")
-public class gameController {
+public class GameController {
 
     @Autowired
     GameService gameService;
@@ -67,7 +67,7 @@ public class gameController {
         @ApiResponse(code = 404, message = "The game doesn't exist"),
         @ApiResponse(code = 500, message = "Server Error")})
     @DeleteMapping(value = "/game/{name}")
-    public ResponseEntity<List<Game>> deleteGame(@ApiParam("name") @PathVariable("name") String name){
+    public ResponseEntity<Game> deleteGame(@ApiParam("name") @PathVariable("name") String name){
         if(!gameService.gameExists(name))
             throw new NotFoundException(String.format("game with name=%s not found", name));
         gameService.deleteGame(name);
