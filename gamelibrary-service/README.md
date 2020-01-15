@@ -1,13 +1,12 @@
-# Game Library Service
+mvn clean install spring-boot:run# Game Library Service
 
 Backend service for  PlayStation game library 
 
 ## Running the application from the command line using Maven
 
 In the base directory (containing pom.xml)
-1. Install dependencies
-* `mvn clean install`
-* `mvn spring-boot:run` 
+Build and run the service application as a spring-boot app
+* `mvn clean install spring-boot:run`
 
 ## Running in a Docker container
 
