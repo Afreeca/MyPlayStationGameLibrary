@@ -1,4 +1,4 @@
-package com.sony.ps.gamelibraryservice.GameServiceTest;
+package com.sony.ps.gamelibraryservice.Service;
 
 import com.sony.ps.gamelibraryservice.model.Game;
 import com.sony.ps.gamelibraryservice.service.GameServiceImpl;
