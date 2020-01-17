@@ -1,9 +1,9 @@
 # MyPlayStationGameLibrary
 Build a basic web app to track your PlayStation game library
+![Image description](https://psmedia.playstation.com/is/image/psmedia/ps.com-listing-thumb-01-eu-09may18?$Icon$)
 
 
-
-## Run both backend(gamelibrary-service) and UI (gamelibrary-ui) using docker compose
+### Run both gamelibrary-service and gamelibrary-ui using docker compose
 
 Node: docker-compose will builds the service and Ui image based on their Dockerfiles
 
